@@ -70,8 +70,8 @@ class TrackedContainer(object):
         docker.Container
         """
         all_kwargs = {}
-        all_kwargs.update(self.kwargs)
-        all_kwargs.update(kwargs)
+        all_kwargs |= self.kwargs
+        all_kwargs |= kwargs
         self.container = self.docker_client.containers.run(self.image_name, **all_kwargs)
         return self.container
 
